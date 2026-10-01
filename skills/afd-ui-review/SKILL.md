@@ -4,7 +4,7 @@ description: Visual and UX audit to run before shipping frontend changes. Use af
 license: MIT
 metadata:
   author: HocVoNgThai
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # UI review

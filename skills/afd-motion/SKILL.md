@@ -4,7 +4,7 @@ description: Motion, animation and interaction rules and recipes for web fronten
 license: MIT
 metadata:
   author: HocVoNgThai
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Motion

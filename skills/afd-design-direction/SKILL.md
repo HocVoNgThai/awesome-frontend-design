@@ -4,7 +4,7 @@ description: Design direction and anti-template rules for any frontend. Use befo
 license: MIT
 metadata:
   author: HocVoNgThai
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Design direction

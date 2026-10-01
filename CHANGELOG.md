@@ -7,8 +7,9 @@
 - Installer CLI for Claude Code, Codex, Gemini CLI, Antigravity, Cursor, Copilot, OpenCode, Windsurf and the universal `.agents/skills` folder.
 - Single-file bundles for chat UIs.
 
-## Unreleased
+## 0.2.0 (2026-10-01)
 
+- Live demos: https://thiscooking.site/samples/web-agency/ and https://thiscooking.site/samples/company-website/.
 - Add `examples/web-agency-landing` and `examples/company-website` (Astro, light/dark, built with the skills) and `examples/build-hosted.mjs` to host them under a sub-path of a strict-CSP site.
 - `afd-theme-systems`: warn against text over fixed-colour highlights (failed in dark mode during the example build).
 - `afd-ui-review`: check header fit at 360 px and overlapping text in every theme; fix screenshot name for `/`.

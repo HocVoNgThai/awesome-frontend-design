@@ -1,6 +1,6 @@
 {
   "name": "awesome-frontend-design",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Open-source agent skills for distinctive frontend design: UI/UX, layout, themes and motion. Static sites and apps, calm to expressive. Works with Claude Code, Codex, Gemini CLI, Antigravity, Cursor, Copilot and more.",
   "type": "module",
   "bin": {

@@ -4,7 +4,7 @@ description: Entry point for building distinctive, production-grade frontends (U
 license: MIT
 metadata:
   author: HocVoNgThai
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Awesome Frontend Design (entry point)

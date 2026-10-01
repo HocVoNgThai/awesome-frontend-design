@@ -4,7 +4,7 @@ description: Frontend rules for web apps that have a backend, from simple (forms
 license: MIT
 metadata:
   author: HocVoNgThai
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # App frontend (mode `app`)
