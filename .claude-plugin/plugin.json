@@ -1,0 +1,10 @@
+{
+  "name": "awesome-frontend-design",
+  "description": "Distinctive frontend design skills: UI/UX direction, themes, motion, static sites and apps (Astro, Next.js + shadcn).",
+  "version": "0.1.0",
+  "author": { "name": "HocVoNgThai" },
+  "homepage": "https://github.com/HocVoNgThai/awesome-frontend-design",
+  "repository": "https://github.com/HocVoNgThai/awesome-frontend-design",
+  "license": "MIT",
+  "keywords": ["frontend", "ui-ux", "design", "animation", "astro", "nextjs", "shadcn"]
+}

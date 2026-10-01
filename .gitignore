@@ -1,0 +1,4 @@
+node_modules/
+.afd-review/
+*.log
+.DS_Store

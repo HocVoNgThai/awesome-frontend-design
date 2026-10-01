@@ -1,0 +1,54 @@
+{
+  "name": "awesome-frontend-design",
+  "version": "0.1.0",
+  "description": "Open-source agent skills for distinctive frontend design: UI/UX, layout, themes and motion. Static sites and apps, calm to expressive. Works with Claude Code, Codex, Gemini CLI, Antigravity, Cursor, Copilot and more.",
+  "type": "module",
+  "bin": {
+    "awesome-frontend-design": "bin/cli.mjs",
+    "afd": "bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "bundles",
+    ".claude-plugin",
+    "README.md",
+    "README.vi.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "validate": "node scripts/validate.mjs",
+    "bundle": "node scripts/build-bundle.mjs",
+    "test": "node scripts/validate.mjs && node scripts/build-bundle.mjs --check"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "agent-skills",
+    "skills",
+    "claude-code",
+    "codex",
+    "gemini-cli",
+    "antigravity",
+    "cursor",
+    "frontend",
+    "ui-ux",
+    "design-system",
+    "animation",
+    "astro",
+    "nextjs",
+    "tailwindcss",
+    "shadcn"
+  ],
+  "author": "HocVoNgThai <vonguyenthaihoc1108@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HocVoNgThai/awesome-frontend-design.git"
+  },
+  "homepage": "https://github.com/HocVoNgThai/awesome-frontend-design#readme",
+  "bugs": {
+    "url": "https://github.com/HocVoNgThai/awesome-frontend-design/issues"
+  }
+}

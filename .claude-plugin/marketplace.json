@@ -1,0 +1,12 @@
+{
+  "name": "awesome-frontend-design",
+  "owner": { "name": "HocVoNgThai" },
+  "plugins": [
+    {
+      "name": "awesome-frontend-design",
+      "source": "./",
+      "description": "Distinctive frontend design skills: UI/UX direction, themes, motion, static sites and apps.",
+      "version": "0.1.0"
+    }
+  ]
+}

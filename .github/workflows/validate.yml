@@ -1,0 +1,18 @@
+name: validate
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+      - name: Installer smoke test
+        run: |
+          node bin/cli.mjs init --ai claude,codex,gemini,antigravity --dry-run
+          node bin/cli.mjs init --dir "$RUNNER_TEMP/skills" && test -f "$RUNNER_TEMP/skills/afd-motion/SKILL.md"
