@@ -1,0 +1,30 @@
+{
+  "light": { "pairs": [
+    { "name": "body", "fg": "#131815", "bg": "#f1f3ee" },
+    { "name": "body on raised", "fg": "#131815", "bg": "#fbfcf9" },
+    { "name": "muted", "fg": "#4a544c", "bg": "#f1f3ee" },
+    { "name": "muted on raised", "fg": "#4a544c", "bg": "#fbfcf9" },
+    { "name": "muted on sunken", "fg": "#4a544c", "bg": "#e3e7de" },
+    { "name": "accent text", "fg": "#1d5a16", "bg": "#f1f3ee" },
+    { "name": "accent text on raised", "fg": "#1d5a16", "bg": "#fbfcf9" },
+    { "name": "on accent fill", "fg": "#131815", "bg": "#c8f031" },
+    { "name": "button text", "fg": "#f1f3ee", "bg": "#131815" },
+    { "name": "accent on ink (button)", "fg": "#c8f031", "bg": "#131815" },
+    { "name": "focus ring", "fg": "#1d5a16", "bg": "#f1f3ee", "min": 3 },
+    { "name": "control border", "fg": "#6f7b6c", "bg": "#f1f3ee", "min": 3 }
+  ]},
+  "dark": { "pairs": [
+    { "name": "body", "fg": "#e8efe8", "bg": "#0e1310" },
+    { "name": "body on raised", "fg": "#e8efe8", "bg": "#161d18" },
+    { "name": "muted", "fg": "#a2b0a4", "bg": "#0e1310" },
+    { "name": "muted on raised", "fg": "#a2b0a4", "bg": "#161d18" },
+    { "name": "muted on sunken", "fg": "#a2b0a4", "bg": "#0a0e0b" },
+    { "name": "accent text", "fg": "#c8f031", "bg": "#0e1310" },
+    { "name": "accent text on raised", "fg": "#c8f031", "bg": "#161d18" },
+    { "name": "on accent fill", "fg": "#0e1310", "bg": "#c8f031" },
+    { "name": "button text", "fg": "#0e1310", "bg": "#e8efe8" },
+    { "name": "accent on ink (button)", "fg": "#c8f031", "bg": "#0e1310" },
+    { "name": "focus ring", "fg": "#c8f031", "bg": "#0e1310", "min": 3 },
+    { "name": "control border", "fg": "#6c7c70", "bg": "#0e1310", "min": 3 }
+  ]}
+}

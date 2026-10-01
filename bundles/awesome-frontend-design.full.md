@@ -1135,6 +1135,8 @@ export default defineConfig({
 });
 ```
 
+Astro inlines tiny `<script>` bundles into the HTML, which a strict `script-src` rejects. Also set `vite: { build: { assetsInlineLimit: 0 } }` so every script is emitted as a file under `/_astro/`, and verify with a post-build scan of the HTML.
+
 `inlineStylesheets: 'never'` matters for a strict `style-src 'self'`. Astro's `define:vars` emits inline style/script, avoid it under strict CSP.
 
 ## Content collection
@@ -1346,7 +1348,8 @@ See the shadcn-theming reference of the afd-app-frontend skill: semantic tokens 
 ## 9. Checklist
 - [ ] One file per theme under `themes/`; no theme logic in components
 - [ ] Theme-init inline, tiny, before paint; no flash on reload
-- [ ] Contrast gate lists every pair and passes in every theme
+- [ ] Contrast gate lists every pair and passes in every theme, including any text that sits on an accent fill
+- [ ] Text never sits on a decorative highlight whose colour is the same in every theme (a lime marker behind light text fails in dark); use an underline stroke or the paired `on-accent` token
 - [ ] Structure differences documented in a table
 - [ ] Switcher accessible, remembered, animated only when motion is on
 - [ ] Fonts for every theme ship the subsets the content needs
@@ -1379,12 +1382,12 @@ Open the screenshots. Look at them; do not assume the numbers are enough. Use re
 
 ## 3. Checklist by priority
 
-1. **Accessibility (critical)**: text >= 4.5:1, UI and focus >= 3:1; visible focus ring on every interactive element; icon-only buttons have `aria-label`;
+1. **Accessibility (critical)**: check in every theme, including dark, text that overlaps a highlight, badge or band; text >= 4.5:1, UI and focus >= 3:1; visible focus ring on every interactive element; icon-only buttons have `aria-label`;
    one `h1`; correct `lang`; skip link works; nothing conveyed by colour alone; forms labelled; dialogs trap and return focus.
 2. **Touch and interaction (critical)**: targets >= 44x44 px; hover-only affordances have a focus or tap equivalent; feedback within 100 ms.
 3. **Performance (high)**: LCP < 2.5 s, CLS < 0.05, INP < 200 ms; images have dimensions; fonts do not shift layout; new JS chunks over 5 KB gz are listed and justified.
 4. **Style fit (high)**: one accent per theme, one radius system, themes feel designed (not recoloured), no AI tells (`afd-design-direction` references).
-5. **Layout and responsive (high)**: no horizontal scroll at 320 px; hero fits the first viewport; dates and numbers on one line; long words and URLs wrap
+5. **Layout and responsive (high)**: header fits at 360 px with brand and primary CTA on one line each and no icon shrinking; no horizontal scroll at 320 px; hero fits the first viewport; dates and numbers on one line; long words and URLs wrap
    (`overflow-wrap: anywhere` in prose and meta); text boxes do not overlap or clip.
 6. **Typography and colour (medium)**: body 16-18 px, 60-70ch; diacritics not clipped; CJK has no letter-spacing or uppercase; tabular numbers in data.
 7. **Animation (medium)**: each effect motivated; motion off leaves everything visible; no jank on theme switch or page transition; no timer-driven flashing;

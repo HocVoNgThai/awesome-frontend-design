@@ -1,0 +1,23 @@
+---
+import { nav, site } from '../data/site';
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/#top" aria-label={`${site.name}, về đầu trang`}>
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" fill="currentColor"/><path d="M7 8h5l4 6 4-6h5l-6.5 9L25 26h-5l-4-6.2L12 26H7l6.5-9z" fill="var(--accent-fill)"/></svg>
+      <span>{site.name}</span>
+    </a>
+    <nav aria-label="Chính">
+      <ul>
+        {nav.map((n) => <li><a href={`/${n.href}`}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="actions">
+      <button type="button" class="icon-btn" data-theme-toggle aria-pressed="false" aria-label="Giao diện tối">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="ic-sun"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="ic-moon"><path d="M20 14.5A8 8 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z" fill="currentColor"/></svg>
+      </button>
+      <a class="btn btn-small" href="/#lien-he">{site.cta}</a>
+    </div>
+  </div>
+</header>

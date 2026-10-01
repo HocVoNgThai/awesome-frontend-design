@@ -77,7 +77,8 @@ for (const theme of themes) {
         if (m.noAlt) problems.push(`${m.noAlt} image(s) without alt attribute`);
         if (m.unlabeled) problems.push(`${m.unlabeled} link/button without accessible name`);
 
-        const name = `${path.replace(/[^a-z0-9]+/gi, '_') || 'home'}__${theme}__${vp}.png`;
+        const slug = path.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'home';
+        const name = `${slug}__${theme}__${vp}.png`;
         await page.screenshot({ path: join(outDir, name), fullPage: true });
         shots += 1;
       } catch (e) {

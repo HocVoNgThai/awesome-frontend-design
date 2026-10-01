@@ -1,0 +1,72 @@
+@layer tokens, base, components, motion;
+
+@layer tokens {
+  :root {
+    color-scheme: light;
+
+    /* semantic colour tokens (light) */
+    --bg: #f1f3ee;
+    --bg-raised: #fbfcf9;
+    --bg-sunken: #e3e7de;
+    --fg: #131815;
+    --fg-muted: #4a544c;
+    --line: #c5ccc0;
+    --line-strong: #6f7b6c;
+    --accent-fill: #c8f031;
+    --on-accent: #131815;
+    --accent-text: #1d5a16;
+    --focus: #1d5a16;
+    --ink: #131815;
+    --on-ink: #f1f3ee;
+
+    /* type */
+    --font-display: 'Bricolage Grotesque Variable', 'Arial Black', system-ui, sans-serif;
+    --font-body: 'Inter Variable', 'Inter Fallback', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+
+    /* space, shape */
+    --gutter: 1rem;
+    --max: 72rem;
+    --radius: 3px;
+    --shadow-hard: 4px 4px 0 var(--ink);
+
+    /* motion */
+    --dur-fast: 160ms;
+    --dur-base: 420ms;
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --stagger: 70ms;
+  }
+
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --bg: #0e1310;
+    --bg-raised: #161d18;
+    --bg-sunken: #0a0e0b;
+    --fg: #e8efe8;
+    --fg-muted: #a2b0a4;
+    --line: #2a352d;
+    --line-strong: #6c7c70;
+    --accent-fill: #c8f031;
+    --on-accent: #0e1310;
+    --accent-text: #c8f031;
+    --focus: #c8f031;
+    --ink: #e8efe8;
+    --on-ink: #0e1310;
+    --shadow-hard: 4px 4px 0 #000;
+  }
+
+  /* Metric-matched fallback so the swap to Inter does not shift layout */
+  @font-face {
+    font-family: 'Inter Fallback';
+    src: local('Arial');
+    size-adjust: 107.4%;
+    ascent-override: 90.2%;
+    descent-override: 22.5%;
+    line-gap-override: 0%;
+  }
+
+  @media (min-width: 48rem) {
+    :root { --gutter: 2rem; }
+  }
+}

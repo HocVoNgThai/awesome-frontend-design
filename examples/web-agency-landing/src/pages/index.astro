@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+import { faq, packages, promises, services, site, steps } from '../data/site';
+---
+<Base>
+  <Header />
+  <main id="main">
+    <Hero />
+
+    <section class="section rail-sec" id="dich-vu" aria-labelledby="dv-title">
+      <div class="wrap rail">
+        <div class="rail-head">
+          <h2 id="dv-title">Chúng tôi làm gì</h2>
+          <p>Năm loại việc, một nguyên tắc: chọn công cụ nhỏ nhất giải được bài toán của bạn.</p>
+        </div>
+        <ul class="index">
+          {services.map((s) => (
+            <li class="reveal">
+              <h3>{s.name}</h3>
+              <p>{s.text}</p>
+              <p class="tags">{s.tags.join(' · ')}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="quy-trinh" aria-labelledby="qt-title">
+      <div class="wrap">
+        <h2 id="qt-title" class="sec-title">Từ cuộc trò chuyện đến trang chạy thật</h2>
+        <ol class="timeline">
+          {steps.map((s) => (
+            <li class="reveal">
+              <h3>{s.name}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="nhan-title">
+      <div class="wrap split">
+        <h2 id="nhan-title">Bạn nhận được gì khi bàn giao</h2>
+        <ul class="checks">
+          {promises.map((p) => <li class="reveal">{p}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="goi" aria-labelledby="goi-title">
+      <div class="wrap">
+        <h2 id="goi-title" class="sec-title">Ba gói theo phạm vi</h2>
+        <p class="sec-lead">Giá và thời gian phụ thuộc vào nội dung và tính năng. Chúng tôi báo giá sau buổi trao đổi đầu tiên.</p>
+        <table class="spec">
+          <caption class="sr-only">So sánh ba gói dịch vụ</caption>
+          <thead>
+            <tr><th scope="col">Gói</th><th scope="col">Phù hợp khi</th><th scope="col">Gồm</th><th scope="col">Thời gian</th><th scope="col">Giá</th></tr>
+          </thead>
+          <tbody>
+            {packages.map((p) => (
+              <tr class="reveal">
+                <th scope="row">{p.name}</th>
+                <td data-label="Phù hợp khi">{p.fit}</td>
+                <td data-label="Gồm">{p.scope}</td>
+                <td data-label="Thời gian">{p.time}</td>
+                <td data-label="Giá">{p.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section narrow" id="hoi-dap" aria-labelledby="hd-title">
+      <div class="wrap">
+        <h2 id="hd-title" class="sec-title">Câu hỏi thường gặp</h2>
+        <div class="faq">
+          {faq.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band" id="lien-he" aria-labelledby="lh-title">
+      <div class="wrap cta-inner">
+        <h2 id="lh-title">Kể cho chúng tôi mục tiêu của bạn.</h2>
+        <p>Gửi vài dòng về doanh nghiệp và trang bạn muốn. Chúng tôi trả lời bằng đề xuất cụ thể, không gửi mẫu chung.</p>
+        <a class="btn btn-ink" href={`mailto:${site.email}?subject=${encodeURIComponent('Nhận báo giá website')}`}>{site.cta}</a>
+        <p class="mail">{site.email}</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>

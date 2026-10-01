@@ -1,0 +1,50 @@
+---
+import { site } from '../data/site';
+const notes = [
+  'Tiêu đề nói rõ bạn làm gì, người xem hiểu trong 5 giây.',
+  'Một nút chính, cùng một nhãn ở mọi nơi trên trang.',
+  'Biểu mẫu ngắn: chỉ hỏi điều bạn thật sự cần.',
+];
+---
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="label">Studio làm website cho doanh nghiệp nhỏ</p>
+      <h1 id="hero-title">Website rõ ràng, <mark>bán được hàng.</mark></h1>
+      <p class="lead">
+        Chúng tôi thiết kế và lập trình website cho doanh nghiệp vừa và nhỏ, từ landing page một màn hình đến hệ thống có đăng nhập
+        và quản trị. Mã nguồn thuộc về bạn.
+      </p>
+      <div class="cta-row">
+        <a class="btn" href="#lien-he">{site.cta}</a>
+        <a class="btn btn-ghost" href="#quy-trinh">Xem quy trình</a>
+      </div>
+    </div>
+
+    <figure class="anatomy">
+      <div class="frame" aria-hidden="true">
+        <div class="frame-bar"><i></i><i></i><i></i><span>ten-ban.vn</span></div>
+        <div class="frame-body">
+          <div class="w-nav blk i-1"><b></b><span></span><span></span><span></span></div>
+          <div class="w-hero">
+            <div class="w-copy">
+              <div class="line l-70 blk i-2"></div>
+              <div class="line l-90 blk i-3"></div>
+              <div class="line l-50 blk i-3"></div>
+              <div class="w-btn blk i-4"><span class="pin p-2">2</span></div>
+              <span class="pin p-1">1</span>
+            </div>
+            <div class="w-media blk i-4"></div>
+          </div>
+          <div class="w-form blk i-5"><div class="field"></div><div class="field"></div><div class="w-submit"></div><span class="pin p-3">3</span></div>
+        </div>
+      </div>
+      <figcaption>
+        <p class="cap-title">Một trang landing tốt có ba thứ</p>
+        <ol class="notes">
+          {notes.map((n, i) => <li><span class="num" aria-hidden="true">{i + 1}</span>{n}</li>)}
+        </ol>
+      </figcaption>
+    </figure>
+  </div>
+</section>

@@ -103,7 +103,8 @@ See the shadcn-theming reference of the afd-app-frontend skill: semantic tokens 
 ## 9. Checklist
 - [ ] One file per theme under `themes/`; no theme logic in components
 - [ ] Theme-init inline, tiny, before paint; no flash on reload
-- [ ] Contrast gate lists every pair and passes in every theme
+- [ ] Contrast gate lists every pair and passes in every theme, including any text that sits on an accent fill
+- [ ] Text never sits on a decorative highlight whose colour is the same in every theme (a lime marker behind light text fails in dark); use an underline stroke or the paired `on-accent` token
 - [ ] Structure differences documented in a table
 - [ ] Switcher accessible, remembered, animated only when motion is on
 - [ ] Fonts for every theme ship the subsets the content needs

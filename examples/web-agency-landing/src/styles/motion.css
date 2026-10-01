@@ -1,0 +1,30 @@
+/* Motion level: balanced. CSS only; theme switch uses one tiny script. Policy A: honour prefers-reduced-motion. */
+@layer motion {
+  @media (prefers-reduced-motion: no-preference) {
+    /* hero wireframe assembles once on load (eased, staggered) */
+    .blk { animation: assemble var(--dur-base) var(--ease-out) both; }
+    .i-1 { animation-delay: calc(0 * var(--stagger)); }
+    .i-2 { animation-delay: calc(1 * var(--stagger)); }
+    .i-3 { animation-delay: calc(2 * var(--stagger)); }
+    .i-4 { animation-delay: calc(3 * var(--stagger)); }
+    .i-5 { animation-delay: calc(4 * var(--stagger)); }
+    .pin { animation: pop 300ms var(--ease-out) 700ms both; }
+
+    /* scroll reveal; unsupported browsers simply show the content */
+    @supports (animation-timeline: view()) {
+      .reveal {
+        animation: reveal linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 35%;
+      }
+    }
+
+    /* circular theme switch (View Transition) */
+    ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+    ::view-transition-new(root) { z-index: 2; }
+  }
+
+  @keyframes assemble { from { opacity: 0; translate: 0 0.75rem; } }
+  @keyframes pop { from { opacity: 0; scale: 0.6; } }
+  @keyframes reveal { from { opacity: 0; translate: 0 1.25rem; } }
+}

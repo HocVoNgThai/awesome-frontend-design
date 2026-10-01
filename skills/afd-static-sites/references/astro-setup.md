@@ -33,6 +33,8 @@ export default defineConfig({
 });
 ```
 
+Astro inlines tiny `<script>` bundles into the HTML, which a strict `script-src` rejects. Also set `vite: { build: { assetsInlineLimit: 0 } }` so every script is emitted as a file under `/_astro/`, and verify with a post-build scan of the HTML.
+
 `inlineStylesheets: 'never'` matters for a strict `style-src 'self'`. Astro's `define:vars` emits inline style/script, avoid it under strict CSP.
 
 ## Content collection

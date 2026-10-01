@@ -1,0 +1,15 @@
+---
+import { nav, site } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="wrap foot">
+    <p class="foot-brand">{site.name}</p>
+    <nav aria-label="Chân trang">
+      <ul>
+        {nav.map((n) => <li><a href={`/${n.href}`}>{n.label}</a></li>)}
+        <li><a href="/#lien-he">{site.cta}</a></li>
+      </ul>
+    </nav>
+    <p class="fine">© 2026 {site.name}. Bản demo dựng bằng <a href="https://github.com/HocVoNgThai/awesome-frontend-design">awesome-frontend-design</a>. Công ty và nội dung là hư cấu.</p>
+  </div>
+</footer>
