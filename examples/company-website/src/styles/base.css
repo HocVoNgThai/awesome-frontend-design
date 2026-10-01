@@ -1,0 +1,320 @@
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + var(--space-4));
+    background: var(--bg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  ul,
+  ol,
+  dl,
+  dd,
+  figure {
+    margin: 0;
+  }
+
+  ul,
+  ol {
+    padding: 0;
+    list-style: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 0.9rem + 6.2vw, 5rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 1.2rem + 3.2vw, 3.5rem);
+    letter-spacing: -0.022em;
+  }
+
+  h3 {
+    font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .skip {
+    position: fixed;
+    inset: var(--space-3) auto auto var(--space-3);
+    z-index: 100;
+    padding: var(--space-3) var(--space-4);
+    background: var(--fg);
+    color: var(--bg);
+    border-radius: var(--radius);
+    text-decoration: none;
+    translate: 0 -200%;
+  }
+
+  .skip:focus-visible {
+    translate: 0 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: calc(var(--max) + var(--gutter) * 2);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Nhãn kỹ thuật: mono, nhỏ, dùng cho thông số chứ không để trang trí */
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+
+  .lead {
+    color: var(--fg-muted);
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.55;
+    max-width: 38rem;
+  }
+
+  /* Khối mở đầu mỗi section: tiêu đề trái, đoạn dẫn phải (thu về một cột dưới 48rem) */
+  .sec-head {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-12);
+  }
+
+  @media (min-width: 60rem) {
+    .sec-head {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--space-6);
+      align-items: end;
+      margin-bottom: var(--space-16);
+    }
+    .sec-head > h2 {
+      grid-column: 1 / span 6;
+    }
+    .sec-head > .lead {
+      grid-column: 8 / span 5;
+    }
+  }
+
+  /* Section: đường kẻ mảnh và dấu ngắm ở hai góc, như một bản vẽ kỹ thuật */
+  .section {
+    position: relative;
+    padding-block: var(--section-y);
+    border-top: 1px solid var(--border);
+  }
+
+  .section > .container {
+    position: relative;
+  }
+
+  .section::before,
+  .section::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    width: 11px;
+    height: 11px;
+    background:
+      linear-gradient(var(--border-strong), var(--border-strong)) center / 1px 100% no-repeat,
+      linear-gradient(var(--border-strong), var(--border-strong)) center / 100% 1px no-repeat;
+    pointer-events: none;
+  }
+
+  .section::before {
+    left: calc(50% - min(50%, var(--max) / 2) - 5px);
+  }
+
+  .section::after {
+    right: calc(50% - min(50%, var(--max) / 2) - 5px);
+  }
+
+  @media (max-width: 80rem) {
+    .section::before,
+    .section::after {
+      display: none;
+    }
+  }
+
+  /* Nút: 3 biến thể, đích chạm >= 44px */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    min-height: 2.75rem;
+    padding: 0.7rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .btn svg {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex: none;
+    transition: translate var(--dur-fast) var(--ease-out);
+  }
+
+  .btn:hover svg {
+    translate: 3px 0;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+  }
+
+  .btn-secondary {
+    border-color: var(--border-strong);
+    background: transparent;
+    color: var(--fg);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--fg);
+    background: var(--bg-raised);
+  }
+
+  .btn-ghost {
+    color: var(--fg);
+    padding-inline: var(--space-3);
+  }
+
+  .btn-ghost:hover {
+    background: var(--bg-sunken);
+  }
+
+  .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Chuyển trang: một đường cong mềm, tối đa ~280ms */
+  ::view-transition-group(root) {
+    animation-duration: var(--dur-page);
+    animation-timing-function: var(--ease-in-out);
+  }
+
+  /* Đổi theme: lớp mới phủ lên bằng vòng tròn (JS điều khiển clip-path) */
+  html.theme-switching::view-transition-old(root),
+  html.theme-switching::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  html.theme-switching::view-transition-new(root) {
+    z-index: 1;
+  }
+}

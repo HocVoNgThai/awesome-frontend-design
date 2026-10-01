@@ -1,0 +1,143 @@
+---
+import Icon from './Icon.astro';
+import HeroFigure from './HeroFigure.astro';
+import { hero } from '../data/site';
+
+// Tách từ lúc build để mỗi từ có thể trượt lên theo thứ tự. Nội dung thật cho trình đọc màn hình nằm ở bản .sr-only.
+let index = 0;
+const lines = hero.headline.map((line) => line.map((word) => ({ ...word, i: index++ })));
+const plain = hero.headline.map((line) => line.map((w) => w.t).join(' ')).join(' ');
+---
+
+<section class="hero">
+  <div class="container">
+    <p class="label mono">{hero.label}</p>
+    <h1>
+      <span class="sr-only">{plain}</span>
+      <span class="visual" aria-hidden="true">
+        {
+          lines.map((line) => (
+            <span class="line">
+              {line.map((w) => (
+                <>
+                  <span class={`mask i${w.i}`}>
+                    <span class:list={[{ em: w.em }]}>{w.t}</span>
+                  </span>{' '}
+                </>
+              ))}
+            </span>
+          ))
+        }
+      </span>
+    </h1>
+
+    <div class="grid">
+      <div class="side">
+        <p class="lead">{hero.lead}</p>
+        <div class="cta">
+          <a class="btn btn-primary" href={hero.primary.href}>
+            {hero.primary.label}
+            <Icon name="arrow" />
+          </a>
+          <a class="btn btn-secondary" href={hero.secondary.href}>{hero.secondary.label}</a>
+        </div>
+      </div>
+      <div class="figure"><HeroFigure /></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(1.5rem, 0.75rem + 3vw, 3.5rem) clamp(3rem, 2rem + 4vw, 5.5rem);
+  }
+  .label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    color: var(--accent-text);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .label::before {
+    content: '';
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+  }
+  h1 {
+    max-width: 18ch;
+  }
+  .visual {
+    display: block;
+  }
+  .line {
+    display: block;
+  }
+  /* Mặt nạ cắt chữ khi trượt lên. Dùng overflow: clip kèm margin để không cắt dấu thanh (ế, ợ, ữ...). */
+  .mask {
+    display: inline-block;
+    vertical-align: top;
+    overflow: clip;
+    overflow-clip-margin: 0.2em;
+    padding-block: 0.14em;
+    margin-block: -0.14em;
+  }
+  .em {
+    font-style: italic;
+    color: var(--accent-text);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .mask > span {
+      display: inline-block;
+      animation: rise 760ms var(--ease-out) both;
+      animation-delay: calc(var(--i, 0) * 55ms);
+    }
+  }
+  @keyframes rise {
+    from {
+      translate: 0 110%;
+    }
+  }
+  .i1 { --i: 1; }
+  .i2 { --i: 2; }
+  .i3 { --i: 3; }
+  .i4 { --i: 4; }
+  .i5 { --i: 5; }
+  .i6 { --i: 6; }
+  .i7 { --i: 7; }
+  .i8 { --i: 8; }
+
+  .grid {
+    display: grid;
+    gap: var(--space-8);
+    margin-top: var(--space-8);
+  }
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  @media (min-width: 64rem) {
+    h1 {
+      max-width: none;
+    }
+    .grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .side {
+      grid-column: 1 / span 4;
+    }
+    .figure {
+      grid-column: 5 / span 8;
+    }
+  }
+</style>

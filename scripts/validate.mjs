@@ -46,7 +46,7 @@ for (const s of skills) {
 }
 
 // banned characters in all prose and code of the pack (house rule: no em dash, no en dash)
-const textFiles = [...walk(root).filter((f) => !f.includes('/.git/') && !f.includes('/node_modules/'))].filter((f) =>
+const textFiles = [...walk(root).filter((f) => !f.includes('/.git/') && !f.includes('/node_modules/') && !f.includes('/dist/') && !f.includes('/.astro/'))].filter((f) =>
   /\.(md|mjs|json|yml|yaml)$/.test(f),
 );
 for (const f of textFiles) {

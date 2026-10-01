@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg { fill: #111612; }
+    .bar { fill: #f3f4f1; }
+    .dot { fill: #d93a1b; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #ecefe9; }
+      .bar { fill: #0d100e; }
+      .dot { fill: #ff6b4a; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="4"/>
+  <path class="bar" d="M9 8h14v4H9zM9 14h9v4H9zM9 20h14v4H9z"/>
+  <circle class="dot" cx="23" cy="16" r="2.5"/>
+</svg>

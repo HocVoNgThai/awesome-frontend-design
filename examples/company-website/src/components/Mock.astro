@@ -1,0 +1,221 @@
+---
+// Một trang web mẫu trừu tượng, dùng chung cho hai lớp (bản vẽ và hoàn thiện) để hai lớp khớp nhau từng điểm.
+// Chữ chỉ là minh họa cấu trúc, không phải khách hàng hay sản phẩm có thật.
+interface Props {
+  variant: 'wire' | 'final';
+}
+const { variant } = Astro.props;
+---
+
+<div class:list={['mock', `mock--${variant}`]} aria-hidden="true">
+  {variant === 'wire' && (
+    <div class="guides">
+      {Array.from({ length: 12 }, () => <i />)}
+    </div>
+  )}
+  <div class="m-nav">
+    <span class="m-logo"></span>
+    <span class="m-links"><span>Giới thiệu</span><span>Dịch vụ</span><span>Liên hệ</span></span>
+    <span class="m-btn">Liên hệ</span>
+  </div>
+  <div class="m-hero">
+    <div class="m-copy">
+      <p class="m-label">Tên thương hiệu</p>
+      <p class="m-title">Tiêu đề của bạn, rõ ràng và đáng tin.</p>
+      <p class="m-text">Đoạn giới thiệu ngắn về sản phẩm hoặc dịch vụ của doanh nghiệp.</p>
+      <div class="m-cta"><span class="m-btn">Bắt đầu</span><span class="m-btn m-btn-ghost">Tìm hiểu thêm</span></div>
+    </div>
+    <div class="m-image" data-size="480 × 360"></div>
+  </div>
+  <div class="m-row">
+    <div><b>Tiêu đề</b><span>Mô tả ngắn</span></div>
+    <div><b>Tiêu đề</b><span>Mô tả ngắn</span></div>
+    <div><b>Tiêu đề</b><span>Mô tả ngắn</span></div>
+  </div>
+</div>
+
+<style>
+  .mock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3cqw;
+    padding: 3cqw;
+    font-size: 1.4cqw;
+    line-height: 1.4;
+    user-select: none;
+  }
+  .mock > :not(.guides) {
+    position: relative;
+  }
+  .mock p,
+  .mock b {
+    margin: 0;
+  }
+
+  .m-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.5cqw;
+    flex: none;
+  }
+  .m-logo {
+    width: 3cqw;
+    height: 3cqw;
+  }
+  .m-links {
+    display: flex;
+    gap: 2.4cqw;
+  }
+  .m-links span {
+    display: inline-block;
+  }
+  .m-btn {
+    display: inline-block;
+    padding: 0.9cqw 1.8cqw;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  .m-hero {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 3cqw;
+  }
+  .m-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6cqw;
+    min-width: 0;
+  }
+  .m-label {
+    font-family: var(--font-mono);
+    font-size: 1.15cqw;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .m-title {
+    font-family: var(--font-display);
+    font-size: 4.6cqw;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+  }
+  .m-text {
+    max-width: 90%;
+  }
+  .m-cta {
+    display: flex;
+    gap: 1.2cqw;
+    margin-top: auto;
+  }
+  .m-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3cqw;
+    flex: none;
+  }
+  .m-row > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2cqw;
+    padding-top: 1.2cqw;
+  }
+  .m-row b {
+    font-size: 1.6cqw;
+    font-weight: 600;
+  }
+
+  /* ---- Bản vẽ: khung nét đứt, chữ ẩn, lưới cột hướng dẫn ---- */
+  .mock--wire {
+    color: transparent;
+  }
+  .mock--wire :is(.m-logo, .m-links span, .m-btn, .m-label, .m-title, .m-text, .m-image, .m-row > div) {
+    outline: 1px dashed var(--border-strong);
+    outline-offset: -1px;
+  }
+  .mock--wire .m-image {
+    background:
+      linear-gradient(to top right, transparent calc(50% - 0.5px), var(--border-strong) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+      linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--border-strong) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+  }
+  .mock--wire .m-image::after {
+    content: attr(data-size);
+    position: absolute;
+    inset: 50% auto auto 50%;
+    translate: -50% -50%;
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-sunken);
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    white-space: nowrap;
+  }
+  .guides {
+    position: absolute;
+    inset: 0 3cqw;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.2cqw;
+    pointer-events: none;
+  }
+  .guides i {
+    background: color-mix(in oklab, var(--accent) 6%, transparent);
+  }
+  @container (max-width: 30rem) {
+    .mock--wire .m-image::after {
+      display: none;
+    }
+  }
+
+  /* ---- Hoàn thiện: bề mặt, chữ, màu nhấn và hoa văn tạo từ CSS ---- */
+  .mock--final {
+    color: var(--fg);
+    background: var(--bg-raised);
+  }
+  .mock--final .m-nav {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 3cqw;
+    box-sizing: content-box;
+  }
+  .mock--final .m-logo {
+    background: var(--fg);
+    border-radius: 0.5cqw;
+  }
+  .mock--final .m-links {
+    color: var(--fg-muted);
+  }
+  .mock--final .m-btn {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: 0.5cqw;
+  }
+  .mock--final .m-btn-ghost {
+    background: transparent;
+    color: var(--fg);
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+  }
+  .mock--final .m-label {
+    color: var(--accent-text);
+  }
+  .mock--final .m-text {
+    color: var(--fg-muted);
+  }
+  .mock--final .m-image {
+    border-radius: 0.8cqw;
+    background:
+      radial-gradient(circle at 72% 30%, var(--accent) 0 9%, transparent 9.4%),
+      repeating-radial-gradient(circle at 28% 74%, transparent 0 0.9cqw, var(--border-strong) 0.9cqw calc(0.9cqw + 1px)),
+      var(--bg-sunken);
+  }
+  .mock--final .m-row > div {
+    border-top: 1px solid var(--border-strong);
+  }
+  .mock--final .m-row span {
+    color: var(--fg-muted);
+  }
+</style>

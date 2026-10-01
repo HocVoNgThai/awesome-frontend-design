@@ -115,6 +115,15 @@ If you do not say, the agent infers the options from your repo (`astro.config`, 
 
 Skills are short; long material lives in `references/` and is read only when needed, so token use stays low.
 
+## Live examples
+
+Built with these skills and hosted on a strict-CSP site (`default-src 'none'`, no inline scripts, Trusted Types):
+
+- Web studio landing page, `static-balanced`: https://thiscooking.site/samples/web-agency/
+- Company website landing page, `static-calm`: https://thiscooking.site/samples/company-website/
+
+Sources and prompts: [examples/](examples/README.md).
+
 ## Principles
 
 1. Distinctive over generic. A page that could be any product is a bug.

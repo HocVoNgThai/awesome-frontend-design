@@ -1,0 +1,127 @@
+---
+import { process } from '../data/site';
+---
+
+<section class="section" id="quy-trinh">
+  <div class="container layout">
+    <div class="rail">
+      <h2>{process.title}</h2>
+      <p class="lead">{process.lead}</p>
+    </div>
+
+    <ol class="steps">
+      {
+        process.steps.map((step, i) => (
+          <li class="step">
+            <span class="marker mono" aria-hidden="true">{i + 1}</span>
+            <div class="content">
+              <h3>{step.title}</h3>
+              <p class="text">{step.text}</p>
+              <p class="output mono"><span>Bàn giao:</span> {step.output}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: grid;
+    gap: var(--space-12);
+  }
+  .rail {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+  }
+  .steps {
+    position: relative;
+    display: grid;
+  }
+  /* Đường dọc nối các mốc */
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    width: 1px;
+    background: var(--border-strong);
+  }
+  .step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: var(--space-6);
+    padding-bottom: var(--space-12);
+  }
+  .step:last-child {
+    padding-bottom: 0;
+  }
+  .marker {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.9375rem;
+  }
+  .content {
+    display: grid;
+    gap: var(--space-3);
+    padding-top: 0.35rem;
+  }
+  .text {
+    color: var(--fg-muted);
+    max-width: 38rem;
+  }
+  .output {
+    color: var(--fg);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--border);
+    max-width: 38rem;
+  }
+  .output span {
+    color: var(--accent-text);
+  }
+
+  @media (min-width: 60rem) {
+    .layout {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--space-6);
+    }
+    .rail {
+      grid-column: 1 / span 4;
+      position: sticky;
+      top: calc(var(--header-h) + var(--space-8));
+      align-self: start;
+    }
+    .steps {
+      grid-column: 6 / span 7;
+    }
+  }
+
+  /* Mốc chuyển sang màu nhấn khi bước đó cuộn tới giữa màn hình */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .marker {
+        animation: reached linear both;
+        animation-timeline: view();
+        animation-range: cover 38% cover 50%;
+      }
+    }
+  }
+  @keyframes reached {
+    to {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+    }
+  }
+</style>

@@ -1,0 +1,53 @@
+---
+import Icon from './Icon.astro';
+---
+
+<button type="button" class="toggle" data-theme-toggle aria-pressed="false" aria-label="Giao diện tối" title="Giao diện tối">
+  <Icon name="sun" class="sun" />
+  <Icon name="moon" class="moon" />
+</button>
+
+<style>
+  .toggle {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--fg);
+    transition:
+      background-color var(--dur-fast) var(--ease-out),
+      border-color var(--dur-fast) var(--ease-out);
+  }
+  .toggle:hover {
+    background: var(--bg-raised);
+    border-color: var(--fg);
+  }
+  .toggle > :global(svg) {
+    grid-area: 1 / 1;
+    transition:
+      opacity var(--dur-base) var(--ease-out),
+      rotate var(--dur-base) var(--ease-out);
+  }
+  /* Biểu tượng cho biết trạng thái hiện tại: mặt trời ở theme sáng, mặt trăng ở theme tối */
+  .toggle :global(.moon) {
+    opacity: 0;
+    rotate: -45deg;
+  }
+  :global(:root[data-theme='dark']) .toggle :global(.sun) {
+    opacity: 0;
+    rotate: 45deg;
+  }
+  :global(:root[data-theme='dark']) .toggle :global(.moon) {
+    opacity: 1;
+    rotate: 0deg;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .toggle > :global(svg) {
+      transition: none;
+    }
+  }
+</style>

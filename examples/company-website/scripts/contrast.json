@@ -1,0 +1,166 @@
+{
+  "light": {
+    "pairs": [
+      {
+        "name": "body text",
+        "fg": "#111612",
+        "bg": "#f3f4f1"
+      },
+      {
+        "name": "muted text",
+        "fg": "#474f49",
+        "bg": "#f3f4f1"
+      },
+      {
+        "name": "muted text on raised",
+        "fg": "#474f49",
+        "bg": "#fbfbf9"
+      },
+      {
+        "name": "muted text on sunken",
+        "fg": "#474f49",
+        "bg": "#e8eae5"
+      },
+      {
+        "name": "accent text",
+        "fg": "#b02b13",
+        "bg": "#f3f4f1"
+      },
+      {
+        "name": "accent text on raised",
+        "fg": "#b02b13",
+        "bg": "#fbfbf9"
+      },
+      {
+        "name": "primary button",
+        "fg": "#ffffff",
+        "bg": "#c4331a"
+      },
+      {
+        "name": "primary button hover",
+        "fg": "#ffffff",
+        "bg": "#a82a14"
+      },
+      {
+        "name": "focus ring",
+        "fg": "#111612",
+        "bg": "#f3f4f1",
+        "min": 3
+      },
+      {
+        "name": "border strong (UI)",
+        "fg": "#7d867e",
+        "bg": "#f3f4f1",
+        "min": 3
+      },
+      {
+        "name": "inverse body",
+        "fg": "#f3f4f1",
+        "bg": "#111612"
+      },
+      {
+        "name": "inverse muted",
+        "fg": "#a9b1aa",
+        "bg": "#111612"
+      },
+      {
+        "name": "inverse accent",
+        "fg": "#ff6b4a",
+        "bg": "#111612"
+      },
+      {
+        "name": "inverse button",
+        "fg": "#1a0804",
+        "bg": "#ff6b4a"
+      },
+      {
+        "name": "inverse focus",
+        "fg": "#f3f4f1",
+        "bg": "#111612",
+        "min": 3
+      }
+    ]
+  },
+  "dark": {
+    "pairs": [
+      {
+        "name": "body text",
+        "fg": "#eceee9",
+        "bg": "#0d100e"
+      },
+      {
+        "name": "muted text",
+        "fg": "#a0a9a2",
+        "bg": "#0d100e"
+      },
+      {
+        "name": "muted text on raised",
+        "fg": "#a0a9a2",
+        "bg": "#151a17"
+      },
+      {
+        "name": "muted text on sunken",
+        "fg": "#a0a9a2",
+        "bg": "#090b0a"
+      },
+      {
+        "name": "accent text",
+        "fg": "#ff8466",
+        "bg": "#0d100e"
+      },
+      {
+        "name": "accent text on raised",
+        "fg": "#ff8466",
+        "bg": "#151a17"
+      },
+      {
+        "name": "primary button",
+        "fg": "#1a0804",
+        "bg": "#ff6b4a"
+      },
+      {
+        "name": "primary button hover",
+        "fg": "#1a0804",
+        "bg": "#ff836a"
+      },
+      {
+        "name": "focus ring",
+        "fg": "#eceee9",
+        "bg": "#0d100e",
+        "min": 3
+      },
+      {
+        "name": "border strong (UI)",
+        "fg": "#58645c",
+        "bg": "#0d100e",
+        "min": 3
+      },
+      {
+        "name": "inverse body",
+        "fg": "#eceee9",
+        "bg": "#1a201c"
+      },
+      {
+        "name": "inverse muted",
+        "fg": "#a9b1aa",
+        "bg": "#1a201c"
+      },
+      {
+        "name": "inverse accent",
+        "fg": "#ff6b4a",
+        "bg": "#1a201c"
+      },
+      {
+        "name": "inverse button",
+        "fg": "#1a0804",
+        "bg": "#ff6b4a"
+      },
+      {
+        "name": "inverse focus",
+        "fg": "#eceee9",
+        "bg": "#1a201c",
+        "min": 3
+      }
+    ]
+  }
+}

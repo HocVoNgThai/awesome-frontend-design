@@ -1,0 +1,280 @@
+---
+import Icon from './Icon.astro';
+import { contact, site } from '../data/site';
+import { hosted } from '../lib/url';
+
+const { email, phone, address, formEndpoint } = site.contact;
+---
+
+<section class="band" id="lien-he">
+  <div class="container layout">
+    <div class="info">
+      <h2>{contact.title}</h2>
+      <p class="lead">{contact.lead}</p>
+      <ul class="direct">
+        {
+          email && (
+            <li>
+              <Icon name="mail" />
+              <a href={`mailto:${email}`}>{email}</a>
+            </li>
+          )
+        }
+        {
+          phone && (
+            <li>
+              <Icon name="phone" />
+              <a href={`tel:${phone.replace(/[^\d+]/g, '')}`}>{phone}</a>
+            </li>
+          )
+        }
+        {
+          address && (
+            <li>
+              <Icon name="pin" />
+              <span>{address}</span>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+
+    {
+      !hosted && (
+    <form
+      class="form"
+      method="post"
+      action={`mailto:${email}`}
+      enctype="text/plain"
+      data-form
+      data-endpoint={formEndpoint}
+      data-email={email}
+    >
+      <div class="pair">
+        <div class="field">
+          <label for="f-name">Họ và tên <span aria-hidden="true">*</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name" />
+          <p class="error" id="e-name" data-error></p>
+        </div>
+        <div class="field">
+          <label for="f-email">Email <span aria-hidden="true">*</span></label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" />
+          <p class="error" id="e-email" data-error></p>
+        </div>
+      </div>
+      <div class="pair">
+        <div class="field">
+          <label for="f-phone">Số điện thoại</label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" />
+        </div>
+        <div class="field">
+          <label for="f-type">Loại dự án</label>
+          <select id="f-type" name="type">
+            {contact.types.map((t) => <option value={t}>{t}</option>)}
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-message">Mô tả dự án <span aria-hidden="true">*</span></label>
+        <textarea id="f-message" name="message" rows="5" required minlength="10" aria-describedby="e-message"></textarea>
+        <p class="error" id="e-message" data-error></p>
+      </div>
+
+      <!-- Bẫy cho bot: người thật không thấy và không điền -->
+      <div class="trap" aria-hidden="true">
+        <label for="f-site">Để trống trường này</label>
+        <input id="f-site" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="submit">
+        <button class="btn send" type="submit">
+          <span data-label>Gửi yêu cầu</span>
+          <Icon name="arrow" />
+        </button>
+        <p class="note">Các trường có dấu * là bắt buộc.</p>
+      </div>
+      <p class="status" role="status" aria-live="polite" data-status></p>
+    </form>
+      )
+    }
+    {hosted && <p class="note demo-note">Bản demo: biểu mẫu liên hệ được tắt. Biểu mẫu đầy đủ có trong mã nguồn của ví dụ.</p>}
+  </div>
+</section>
+
+<script>
+  import '../scripts/form';
+</script>
+
+<style>
+  /* Dải đảo màu: tách phần liên hệ khỏi phần còn lại và luôn tương phản với nền trang ở cả hai theme */
+  .band {
+    --focus: var(--inv-focus);
+    padding-block: var(--section-y);
+    background: var(--inv-bg);
+    color: var(--inv-fg);
+  }
+  .layout {
+    display: grid;
+    gap: var(--space-12);
+  }
+  .info {
+    display: grid;
+    gap: var(--space-6);
+    align-content: start;
+  }
+  .info .lead {
+    color: var(--inv-muted);
+  }
+  .direct {
+    display: grid;
+    gap: var(--space-3);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--inv-border);
+  }
+  .direct li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 2.75rem;
+  }
+  .direct :global(svg) {
+    flex: none;
+    color: var(--inv-muted);
+  }
+  .direct a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    text-underline-offset: 0.25em;
+    overflow-wrap: anywhere;
+  }
+
+  .form {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .pair {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .field {
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+  }
+  label {
+    font-size: 0.9375rem;
+    color: var(--inv-muted);
+  }
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.85rem;
+    background: transparent;
+    color: var(--inv-fg);
+    border: 1px solid var(--inv-muted);
+    border-radius: var(--radius);
+    transition: border-color var(--dur-fast) var(--ease-out);
+  }
+  select {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--inv-muted) 50%),
+      linear-gradient(135deg, var(--inv-muted) 50%, transparent 50%);
+    background-position:
+      calc(100% - 1.2rem) 50%,
+      calc(100% - 0.85rem) 50%;
+    background-size: 0.35rem 0.35rem;
+    background-repeat: no-repeat;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+  select option {
+    background: var(--inv-bg);
+    color: var(--inv-fg);
+  }
+  input:hover,
+  select:hover,
+  textarea:hover {
+    border-color: var(--inv-fg);
+  }
+  .form :is(input, select, textarea):focus-visible {
+    outline: 2px solid var(--inv-focus);
+    outline-offset: 2px;
+  }
+  [aria-invalid='true'] {
+    border-color: var(--inv-accent);
+  }
+  .error {
+    min-height: 0;
+    color: var(--inv-accent);
+    font-size: 0.875rem;
+  }
+  .error:empty {
+    display: none;
+  }
+  .trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .submit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .send {
+    background: var(--inv-accent);
+    color: var(--inv-on-accent);
+  }
+  .send:hover {
+    background: color-mix(in oklab, var(--inv-accent) 82%, var(--inv-fg));
+  }
+  .send[disabled] {
+    opacity: 0.65;
+    cursor: progress;
+  }
+  .note {
+    font-size: 0.875rem;
+    color: var(--inv-muted);
+  }
+  .status {
+    font-size: 0.9375rem;
+  }
+  .status:empty {
+    display: none;
+  }
+  .status[data-state='error'] {
+    color: var(--inv-accent);
+  }
+  .status a {
+    text-underline-offset: 0.2em;
+  }
+
+  @media (min-width: 40rem) {
+    .pair {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 64rem) {
+    .layout {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--space-6);
+    }
+    .info {
+      grid-column: 1 / span 5;
+    }
+    .form,
+    .demo-note {
+      grid-column: 7 / span 6;
+    }
+  }
+</style>

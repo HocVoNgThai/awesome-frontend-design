@@ -1,0 +1,167 @@
+---
+import Icon from './Icon.astro';
+import Mock from './Mock.astro';
+---
+
+<figure class="fig intro" data-figure>
+  <div class="frame">
+    <div class="layer wire"><Mock variant="wire" /></div>
+    <div class="layer final"><Mock variant="final" /></div>
+    <div class="handle" aria-hidden="true">
+      <span class="knob">
+        <Icon name="arrow" class="l" />
+        <Icon name="arrow" class="r" />
+      </span>
+    </div>
+    <input
+      class="range"
+      type="range"
+      min="0"
+      max="100"
+      step="1"
+      value="50"
+      aria-label="So sánh bản vẽ và sản phẩm hoàn thiện"
+      aria-valuetext="Bản vẽ 50%, hoàn thiện 50%"
+    />
+  </div>
+  <figcaption class="mono">
+    <span>Bản vẽ</span>
+    <span class="hint">Kéo để so sánh</span>
+    <span>Hoàn thiện</span>
+  </figcaption>
+</figure>
+
+<script>
+  import '../scripts/figure';
+</script>
+
+<style>
+  .fig {
+    --pos: 50%;
+  }
+  .frame {
+    position: relative;
+    container-type: inline-size;
+    aspect-ratio: 5 / 4;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    overflow: clip;
+    background: var(--bg-sunken);
+  }
+  @media (min-width: 40rem) {
+    .frame {
+      aspect-ratio: 16 / 10;
+    }
+  }
+  .layer {
+    position: absolute;
+    inset: 0;
+  }
+  .wire {
+    background: var(--bg-sunken);
+  }
+  .final {
+    clip-path: inset(0 0 0 var(--pos));
+  }
+
+  .handle {
+    position: absolute;
+    inset: 0 auto 0 var(--pos);
+    width: 2px;
+    margin-left: -1px;
+    background: var(--accent);
+    pointer-events: none;
+  }
+  .knob {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    translate: -50% -50%;
+    background: var(--bg-raised);
+    color: var(--fg);
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+    transition: scale var(--dur-fast) var(--ease-out);
+  }
+  .knob :global(svg) {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  .knob :global(.l) {
+    rotate: 180deg;
+    translate: 0.1rem 0;
+  }
+  .knob :global(.r) {
+    translate: -0.1rem 0;
+  }
+  .frame:hover .knob,
+  .frame:has(.range:active) .knob {
+    scale: 1.08;
+  }
+
+  /* Ô range phủ toàn khung, trong suốt: kéo ở đâu cũng được, bàn phím dùng phím mũi tên */
+  .range {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+    touch-action: pan-y;
+    appearance: none;
+    background: transparent;
+  }
+  .range::-webkit-slider-runnable-track {
+    height: 100%;
+    background: transparent;
+  }
+  .range::-webkit-slider-thumb {
+    appearance: none;
+    width: 1px;
+    height: 100%;
+  }
+  .range::-moz-range-track {
+    height: 100%;
+    background: transparent;
+  }
+  .range::-moz-range-thumb {
+    width: 1px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+  }
+  .frame:has(.range:focus-visible) {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+    color: var(--fg-muted);
+  }
+  .hint {
+    color: var(--accent-text);
+  }
+
+  /* Lúc mở trang, đường chia trượt một lần từ mép phải về giữa để người xem hiểu đây là thanh kéo.
+     Người dùng chạm vào là dừng ngay (figure.ts bỏ class intro). */
+  @media (prefers-reduced-motion: no-preference) {
+    .fig.intro {
+      animation: sweep 1300ms var(--ease-in-out) 900ms backwards;
+    }
+  }
+  @keyframes sweep {
+    from {
+      --pos: 96%;
+    }
+  }
+</style>

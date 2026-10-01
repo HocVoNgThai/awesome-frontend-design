@@ -7,6 +7,7 @@ import '../styles/base.css';
 import '../styles/sections.css';
 import '../styles/motion.css';
 import { site } from '../data/site';
+import { hosted, url } from '../lib/url';
 
 interface Props { title?: string; description?: string; noindex?: boolean }
 const { title = site.title, description = site.description, noindex = false } = Astro.props;
@@ -27,23 +28,13 @@ const ld = {
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#f1f3ee" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0e1310" media="(prefers-color-scheme: dark)" />
-    <script is:inline>
-      (() => {
-        try {
-          let t = localStorage.getItem('theme');
-          if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          document.documentElement.dataset.theme = t;
-        } catch (e) {
-          document.documentElement.dataset.theme = 'light';
-        }
-      })();
-    </script>
+    <script is:inline src={url('theme-init.js')}></script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+    {!hosted && <link rel="sitemap" href={url('sitemap-index.xml')} />}
+    {(noindex || hosted) && <meta name="robots" content="noindex" />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

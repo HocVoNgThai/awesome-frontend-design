@@ -1,0 +1,107 @@
+---
+import { standards } from '../data/site';
+---
+
+<section class="section" id="tieu-chuan">
+  <div class="container">
+    <header class="sec-head">
+      <h2>{standards.title}</h2>
+      <p class="lead">{standards.lead}</p>
+    </header>
+
+    <div class="bento">
+      {
+        standards.items.map((item) => (
+          <article class="cell">
+            <div class="copy">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+            <pre class="code mono"><code>{item.code.join('\n')}</code></pre>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Lưới ô liền nhau, ngăn cách bằng đường kẻ mảnh. Sáu mục, sáu ô, không ô trống. */
+  .bento {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1px;
+    background: var(--border-strong);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    overflow: clip;
+  }
+  .cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-8);
+    padding: var(--space-6);
+    background: var(--bg);
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+  .cell:hover {
+    background: var(--bg-raised);
+  }
+  .copy {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .copy p {
+    color: var(--fg-muted);
+    max-width: 34rem;
+  }
+  .code {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-sunken);
+    border-left: 2px solid var(--accent);
+    color: var(--fg);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .code code {
+    font: inherit;
+  }
+
+  @media (min-width: 40rem) {
+    .bento {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .cell {
+      padding: var(--space-8);
+    }
+  }
+  @media (min-width: 64rem) {
+    .bento {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .cell:nth-child(1) { grid-column: span 5; }
+    .cell:nth-child(2) { grid-column: span 4; }
+    .cell:nth-child(3) { grid-column: span 3; }
+    .cell:nth-child(4) { grid-column: span 3; }
+    .cell:nth-child(5) { grid-column: span 4; }
+    .cell:nth-child(6) { grid-column: span 5; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .cell {
+        animation: settle linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 45%;
+      }
+    }
+  }
+  @keyframes settle {
+    from {
+      opacity: 0;
+      translate: 0 1rem;
+    }
+  }
+</style>

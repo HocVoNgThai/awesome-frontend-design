@@ -14,6 +14,11 @@
   .ic-moon { display: none; }
   :root[data-theme='dark'] .ic-sun { display: none; }
   :root[data-theme='dark'] .ic-moon { display: block; }
+  @media (max-width: 26rem) {
+    .brand { font-size: 1.125rem; gap: 0.5rem; }
+    .actions { gap: 0.5rem; }
+    .actions .btn-small { padding-inline: 0.75rem; font-size: 0.875rem; }
+  }
   @media (min-width: 52rem) { .site-header nav { display: block; } .site-header .bar { gap: 1.5rem; } }
 
   /* ---------- hero (split) ---------- */

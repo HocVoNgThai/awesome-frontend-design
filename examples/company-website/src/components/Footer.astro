@@ -1,0 +1,125 @@
+---
+import Logo from './Logo.astro';
+import { nav, site } from '../data/site';
+
+const year = new Date().getFullYear();
+const { email, phone, address } = site.contact;
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="top">
+      <div class="about">
+        <a class="brand" href="#top">
+          <Logo />
+          <span class="name">{site.name}</span>
+        </a>
+        <p>{site.description}</p>
+      </div>
+
+      <nav class="col" aria-label="Chân trang">
+        <h2 class="mono">Điều hướng</h2>
+        <ul>
+          {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="col">
+        <h2 class="mono">Liên hệ</h2>
+        <ul>
+          {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
+          {phone && <li><a href={`tel:${phone.replace(/[^\d+]/g, '')}`}>{phone}</a></li>}
+          {address && <li>{address}</li>}
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom mono">
+      <p>© {year} {site.name}</p>
+      <a href="#top">Về đầu trang</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding-block: var(--space-16) var(--space-8);
+    border-top: 1px solid var(--border-strong);
+  }
+  .top {
+    display: grid;
+    gap: var(--space-12);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 2.75rem;
+    text-decoration: none;
+  }
+  .name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+  .about {
+    display: grid;
+    gap: var(--space-4);
+    justify-items: start;
+    max-width: 26rem;
+    color: var(--fg-muted);
+    font-size: 0.9375rem;
+  }
+  .col {
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+  }
+  .col h2 {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .col ul {
+    display: grid;
+  }
+  .col li {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    overflow-wrap: anywhere;
+  }
+  .col a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    text-decoration: none;
+  }
+  .col a:hover {
+    text-decoration: underline;
+  }
+  .bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-16);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border);
+    color: var(--fg-muted);
+  }
+  .bottom a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+  @media (min-width: 48rem) {
+    .top {
+      grid-template-columns: 2fr 1fr 1fr;
+      column-gap: var(--space-8);
+    }
+  }
+</style>

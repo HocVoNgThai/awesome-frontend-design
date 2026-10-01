@@ -1,0 +1,24 @@
+/* Theme tối được thiết kế riêng, không đảo màu: bề mặt nổi lên bằng cách sáng dần, viền đậm hơn. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0d100e;
+  --bg-raised: #151a17;
+  --bg-sunken: #090b0a;
+  --fg: #eceee9;
+  --fg-muted: #a0a9a2;
+  --border: #262d28;
+  --border-strong: #58645c;
+  --accent: #ff6b4a;
+  --accent-hover: #ff836a;
+  --on-accent: #1a0804;
+  --accent-text: #ff8466;
+  --focus: #eceee9;
+
+  --inv-bg: #1a201c;
+  --inv-fg: #eceee9;
+  --inv-muted: #a9b1aa;
+  --inv-border: #38423b;
+  --inv-accent: #ff6b4a;
+  --inv-on-accent: #1a0804;
+  --inv-focus: #eceee9;
+}

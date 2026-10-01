@@ -1,0 +1,81 @@
+---
+import Icon from './Icon.astro';
+import { faq } from '../data/site';
+---
+
+<section class="section" id="hoi-dap">
+  <div class="container">
+    <header class="sec-head">
+      <h2>{faq.title}</h2>
+    </header>
+
+    <div class="list">
+      {
+        faq.items.map((item) => (
+          <details name="faq">
+            <summary>
+              <span>{item.q}</span>
+              <Icon name="plus" />
+            </summary>
+            <p class="answer">{item.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .list {
+    max-width: 52rem;
+    border-top: 1px solid var(--border-strong);
+  }
+  details {
+    border-bottom: 1px solid var(--border);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    min-height: 3.5rem;
+    padding-block: var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+    line-height: 1.25;
+    list-style: none;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary :global(svg) {
+    flex: none;
+    color: var(--accent-text);
+    transition: rotate var(--dur-base) var(--ease-out);
+  }
+  details[open] summary :global(svg) {
+    rotate: 135deg;
+  }
+  summary:hover span {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+  .answer {
+    padding-bottom: var(--space-6);
+    max-width: 42rem;
+    color: var(--fg-muted);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    details[open] .answer {
+      animation: reveal var(--dur-base) var(--ease-out) both;
+    }
+  }
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      translate: 0 -0.35rem;
+    }
+  }
+</style>

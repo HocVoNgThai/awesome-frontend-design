@@ -1,0 +1,78 @@
+---
+import { url } from '../lib/url';
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import Icon from '../components/Icon.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import { nav, site } from '../data/site';
+---
+
+<Base title={`Không tìm thấy trang - ${site.name}`} noindex>
+  <main id="main" class="wrap">
+    <div class="top container">
+      <a class="brand" href={url()}><Logo /><span class="name">{site.name}</span></a>
+      <ThemeToggle />
+    </div>
+    <div class="container body">
+      <p class="code mono">404</p>
+      <h1>Không tìm thấy trang này.</h1>
+      <p class="lead">Đường dẫn có thể đã thay đổi hoặc bị gõ sai. Bạn có thể về trang chủ hoặc đi thẳng tới một phần bên dưới.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href={url()}>Về trang chủ <Icon name="arrow" /></a>
+      </div>
+      <ul class="links">
+        {nav.map((item) => <li><a href={url(item.href)}>{item.label}</a></li>)}
+      </ul>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .wrap {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-h);
+    border-bottom: 1px solid var(--border);
+    max-width: none;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    min-height: 2.75rem;
+  }
+  .name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+  .body {
+    display: grid;
+    gap: var(--space-6);
+    align-content: center;
+    justify-items: start;
+    padding-block: var(--space-16);
+  }
+  .code {
+    color: var(--accent-text);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border);
+  }
+  .links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+</style>

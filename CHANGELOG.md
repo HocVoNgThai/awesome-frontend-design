@@ -9,7 +9,7 @@
 
 ## Unreleased
 
-- Add `examples/web-agency-landing` (Astro, light/dark, built with the skills).
+- Add `examples/web-agency-landing` and `examples/company-website` (Astro, light/dark, built with the skills) and `examples/build-hosted.mjs` to host them under a sub-path of a strict-CSP site.
 - `afd-theme-systems`: warn against text over fixed-colour highlights (failed in dark mode during the example build).
 - `afd-ui-review`: check header fit at 360 px and overlapping text in every theme; fix screenshot name for `/`.
 - `afd-static-sites`: note that Astro inlines tiny scripts, which breaks strict CSP (`assetsInlineLimit: 0`).

@@ -61,6 +61,13 @@ Nếu bạn không nói rõ, agent tự đoán từ repo (`astro.config`, `next.
 | `afd-app-frontend` | Next.js + shadcn hoặc Vite + Node; state, form, dữ liệu, độ phức tạp backend |
 | `afd-ui-review` | Cổng kiểm tra, script render matrix, checklist theo mức ưu tiên |
 
+## Ví dụ chạy thật
+
+- Landing page studio làm website (`static-balanced`): https://thiscooking.site/samples/web-agency/
+- Landing page website công ty (`static-calm`): https://thiscooking.site/samples/company-website/
+
+Mã nguồn và prompt: [examples/](examples/README.md).
+
 ## Đóng góp và giấy phép
 
 Xem [CONTRIBUTING.md](CONTRIBUTING.md). Giấy phép [MIT](LICENSE).
