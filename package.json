@@ -19,7 +19,7 @@
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "bundle": "node scripts/build-bundle.mjs",
-    "test": "node scripts/validate.mjs && node scripts/build-bundle.mjs --check"
+    "test": "node --test tests/cli.test.mjs && node scripts/validate.mjs && node scripts/build-bundle.mjs --check"
   },
   "engines": {
     "node": ">=18"

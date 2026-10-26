@@ -51,6 +51,11 @@ const value = (n) => {
   return i !== -1 && argv[i + 1] && !argv[i + 1].startsWith('-') ? argv[i + 1] : undefined;
 };
 
+if (flag('help', 'h')) {
+  console.log(HELP);
+  process.exit(0);
+}
+
 const allSkills = () =>
   readdirSync(skillsDir).filter((d) => existsSync(join(skillsDir, d, 'SKILL.md'))).sort();
 
