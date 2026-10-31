@@ -48,7 +48,10 @@ const cmd = argv[0] && !argv[0].startsWith('-') ? argv[0] : 'help';
 const flag = (n, short) => argv.includes(`--${n}`) || (short && argv.includes(`-${short}`));
 const value = (n) => {
   const i = argv.indexOf(`--${n}`);
-  return i !== -1 && argv[i + 1] && !argv[i + 1].startsWith('-') ? argv[i + 1] : undefined;
+  if (i === -1) return undefined;
+  const next = argv[i + 1];
+  if (!next || next.startsWith('-') || !next.trim()) fail(`--${n} requires a value`);
+  return next;
 };
 
 if (flag('help', 'h')) {
